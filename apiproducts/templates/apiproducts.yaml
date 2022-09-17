@@ -1,0 +1,45 @@
+{{- range $index,$apiproducts := .Values.apiProducts }}
+apiVersion: portal.gloo.solo.io/v1beta1
+kind: APIProduct
+metadata:
+  labels:
+    lob: {{ $apiproducts.lob }}
+  name: {{ $apiproducts.name }}
+  namespace: {{ $apiproducts.lob }}
+spec:
+  displayInfo:
+    contact:
+      email: {{ $apiproducts.apiOwnerEmail }}
+      name: {{ $apiproducts.apiOwnerName }}
+    description: {{ $apiproducts.description }}
+    image:
+      configMap:
+        key: image
+        name: {{ $apiproducts.name }}-img
+        namespace: gloo-portal
+    title: {{ $apiproducts.title }}
+  versions:
+{{- range $versions := $apiproducts.versions }} 
+
+    - apis:
+{{- range $apis := $versions.apiDocs }}     
+        - apiDoc:
+            name: {{ $apis.apiDocName }}
+            namespace: gloo-portal
+{{ if $apis.gatewayConfig }}            
+          gatewayConfig:
+          
+{{- toYaml $apis.gatewayConfig | nindent 12 }} 
+{{ end }}      
+{{ if $apis.openApi.operations }}      
+          openApi:
+{{- toYaml $apis.openApi | nindent 12 }}
+{{ else }}
+          openApi: {}
+{{ end }}
+{{- end }}             
+      name: {{ $versions.version }}
+      tags:
+{{- toYaml $apiproducts.tags | nindent 9 }}        
+{{- end }}         
+{{- end }}         

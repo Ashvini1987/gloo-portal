@@ -1,0 +1,20 @@
+environments:
+  - name: test-env-ashvini-1
+    domain: ashvinitest.apps.pocokdclus01.india.airtel.itm
+    displayName: "Environment-Ashvini-1"
+    apiProducts:
+      - names:
+          - createcustomerproblemreport_v2_2
+        usagePlans:
+          - large
+          - small
+          - unlimited
+        versions: {}
+    usagePlans:
+      - name: large
+        displayName: 1000 RPS with apikey auth
+        authPolicy:
+          apiKey: {}
+        rateLimit:
+          requestPerUnit: 1000
+          unit: SECOND

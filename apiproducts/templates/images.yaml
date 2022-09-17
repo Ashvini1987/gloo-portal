@@ -1,0 +1,19 @@
+{{ $currentScope := .}}
+{{ range $path, $_ :=  .Files.Glob  "image-png/*" }}
+  {{- with $currentScope}}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ ($path | replace "image-png/" "") | replace ".png" "-img" }}
+  namespace: gloo-portal
+binaryData:    
+   image: {{ .Files.Get $path | b64enc }}
+   {{- end }}
+---
+
+{{ end }}
+
+
+
+

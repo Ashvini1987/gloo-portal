@@ -1,0 +1,35 @@
+apiProducts:
+- name: createcustomerproblemreport_v2_2
+  title: "CreateCustomerProblemReprt_V2_2"
+  description: "use to create service request"
+  lob: esb-butterfly
+  apiOwnerEmail: ashvini@esb.com
+  apiOwnerName: ESB support
+  tags:
+     esb: {}
+     hr: {}
+  versions:
+    - version: 'v1.0.0'
+      apiDocs:
+       - apiDocName: createCustomerProblemReport_V2_2
+         openApi: {}
+         gatewayConfig:
+            route:
+              routeRef:
+                 name: btfly-sit-route-2
+                 namespace: gloo-portal
+      #  - apiDocName: airtel-iq
+      #    openApi:
+      #     operations:
+      #     - id: executeCallFlowUsingPOST
+      #       gatewayConfig:
+      #           route:
+      #             routeRef:
+      #               name: route-name
+      #               namespace: route-ns
+      #     - id: fetchSSOResponseUsingGET 
+      #       gatewayConfig:
+      #           route:
+      #             routeRef:
+      #               name: route-name
+      #               namespace: route-ns          

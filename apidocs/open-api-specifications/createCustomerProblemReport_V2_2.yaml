@@ -1,0 +1,486 @@
+---
+basePath: "/services"
+paths:
+  "/services/customer/customerproblem/v2.1":
+    post:
+      operationId: 'This operation will create a service request in Airtel System '
+      produces:
+      - application/json
+      - application/xml
+      responses:
+        '200':
+          schema:
+            "$ref": "#/definitions/customerproblem_v2.1_Response"
+          description: Request Processed Successfully
+        '400':
+          schema:
+            "$ref": "#/definitions/400_error_Response"
+          description: Invalid Request. Please check the input and resubmit
+        '409':
+          schema:
+            "$ref": "#/definitions/409_error_Response"
+          description: Service Request already exists
+        '500':
+          schema:
+            "$ref": "#/definitions/500_error_Response"
+          description: Internal service error has occurred.
+        '502':
+          schema:
+            "$ref": "#/definitions/502_error_Response"
+          description: Unexpected error has occurred.
+        '504':
+          schema:
+            "$ref": "#/definitions/504_error_Response"
+          description: Service call timed out. Please try again later.
+      parameters:
+      - schema:
+          "$ref": "#/definitions/customerproblem_v2.1_Request"
+        in: body
+        name: body
+        description: 'This operation will create a service request in Airtel System '
+        required: true
+      consumes:
+      - application/json
+      - application/xml
+host: 10.10.2.12
+schemes:
+- http
+definitions:
+  502_error_Response:
+    required:
+    - Fault
+    properties:
+      Fault:
+        type: object
+        required:
+        - faultcode
+        - faultstring
+        - detail
+        properties:
+          faultcode:
+            type: string
+          faultstring:
+            type: string
+          detail:
+            type: object
+            required:
+            - createSR
+            properties:
+              createSR:
+                type: object
+                required:
+                - soaFaultCode
+                - faultTrace
+                - soaFaultOriginator
+                - faultDescription
+                - soaTransactionID
+                properties:
+                  soaFaultCode:
+                    default: CreateCustomerProblemReport-3999-E
+                    type: String
+                  faultTrace:
+                    type: string
+                  soaFaultOriginator:
+                    type: string
+                  faultDescription:
+                    type: string
+                  soaTransactionID:
+                    type: string
+  customerproblem_v2.1_Request:
+    required:
+    - createSRRequest
+    properties:
+      createSRRequest:
+        type: object
+        required:
+        - serviceType
+        - empId
+        - productID
+        - endDate
+        - source
+        - type
+        - caseTypeCode
+        - incidentAttributes
+        - parentID
+        - caseType
+        - problemCode
+        - customerType
+        - custProduct
+        - problem
+        - custProductID
+        - partyNO
+        - partyId
+        - summary
+        - severity
+        - sourceID
+        - product
+        - locality
+        - subSubType
+        - siNumber
+        - orgID
+        - referenceID
+        - externalAttributes
+        - accountId
+        - creationChannel
+        - subSubTypeID
+        - createdBy
+        - srTypeID
+        - subType
+        - severityID
+        - lob
+        - startDate
+        properties:
+          serviceType:
+            type: string
+          empId:
+            type: string
+          productID:
+            type: string
+          endDate:
+            type: string
+          source:
+            type: string
+          type:
+            type: string
+          caseTypeCode:
+            type: string
+          incidentAttributes:
+            type: object
+            required:
+            - incidentAttribute10
+            - incidentAttribute12
+            - incidentAttribute11
+            - incidentAttribute1
+            - incidentAttribute14
+            - incidentAttribute13
+            - incidentAttribute6
+            - incidentAttribute7
+            - incidentAttribute8
+            - incidentAttribute9
+            - incidentAttribute2
+            - incidentAttribute3
+            - incidentAttribute4
+            - incidentAttribute5
+            properties:
+              incidentAttribute10:
+                type: string
+              incidentAttribute12:
+                type: string
+              incidentAttribute11:
+                type: string
+              incidentAttribute1:
+                type: string
+              incidentAttribute14:
+                type: string
+              incidentAttribute13:
+                type: string
+              incidentAttribute6:
+                type: string
+              incidentAttribute7:
+                type: string
+              incidentAttribute8:
+                type: string
+              incidentAttribute9:
+                type: string
+              incidentAttribute2:
+                type: string
+              incidentAttribute3:
+                type: string
+              incidentAttribute4:
+                type: string
+              incidentAttribute5:
+                type: string
+          parentID:
+            type: string
+          caseType:
+            type: string
+          problemCode:
+            type: string
+          customerType:
+            type: string
+          custProduct:
+            type: string
+          problem:
+            type: string
+          custProductID:
+            type: string
+          partyNO:
+            type: string
+          partyId:
+            type: string
+          summary:
+            type: string
+          severity:
+            type: string
+          sourceID:
+            type: string
+          product:
+            type: string
+          locality:
+            type: string
+          subSubType:
+            type: string
+          siNumber:
+            type: string
+          orgID:
+            type: string
+          referenceID:
+            type: string
+          externalAttributes:
+            type: object
+            required:
+            - externalAttribute3
+            - externalAttribute4
+            - externalAttribute1
+            - externalAttribute2
+            - externalAttribute7
+            - externalAttribute8
+            - externalAttribute5
+            - externalAttribute6
+            - externalAttribute12
+            - externalAttribute13
+            - externalAttribute10
+            - externalAttribute9
+            - externalAttribute11
+            - externalAttribute14
+            properties:
+              externalAttribute3:
+                type: string
+              externalAttribute4:
+                type: string
+              externalAttribute1:
+                type: string
+              externalAttribute2:
+                type: string
+              externalAttribute7:
+                type: string
+              externalAttribute8:
+                type: string
+              externalAttribute5:
+                type: string
+              externalAttribute6:
+                type: string
+              externalAttribute12:
+                type: string
+              externalAttribute13:
+                type: string
+              externalAttribute10:
+                type: string
+              externalAttribute9:
+                type: string
+              externalAttribute11:
+                type: string
+              externalAttribute14:
+                type: string
+          accountId:
+            type: string
+          creationChannel:
+            type: string
+          subSubTypeID:
+            type: string
+          createdBy:
+            type: string
+          srTypeID:
+            type: string
+          subType:
+            type: string
+          severityID:
+            type: string
+          lob:
+            type: string
+          startDate:
+            type: string
+  customerproblem_v2.1_Response:
+    required:
+    - createSRResponse
+    properties:
+      createSRResponse:
+        type: object
+        required:
+        - "“exists”"
+        - requestNumber
+        - slaTime
+        - code
+        - requestId
+        - sla
+        - message
+        properties:
+          "“exists”":
+            type: string
+          requestNumber:
+            type: string
+          slaTime:
+            type: string
+          code:
+            type: string
+          requestId:
+            type: string
+          sla:
+            type: string
+          message:
+            type: string
+  409_error_Response:
+    required:
+    - Fault
+    properties:
+      Fault:
+        type: object
+        required:
+        - faultcode
+        - faultstring
+        - detail
+        properties:
+          faultcode:
+            type: string
+          faultstring:
+            type: string
+          detail:
+            type: object
+            required:
+            - createSR
+            properties:
+              createSR:
+                type: object
+                required:
+                - soaFaultCode
+                - faultTrace
+                - soaFaultOriginator
+                - faultDescription
+                - soaTransactionID
+                properties:
+                  soaFaultCode:
+                    default: CreateCustomerProblemReport-3501-E
+                    type: String
+                  faultTrace:
+                    type: string
+                  soaFaultOriginator:
+                    type: string
+                  faultDescription:
+                    type: string
+                  soaTransactionID:
+                    type: string
+  400_error_Response:
+    required:
+    - Fault
+    properties:
+      Fault:
+        type: object
+        required:
+        - faultcode
+        - faultstring
+        - detail
+        properties:
+          faultcode:
+            type: string
+          faultstring:
+            type: string
+          detail:
+            type: object
+            required:
+            - createSR
+            properties:
+              createSR:
+                type: object
+                required:
+                - soaFaultCode
+                - faultTrace
+                - soaFaultOriginator
+                - faultDescription
+                - soaTransactionID
+                properties:
+                  soaFaultCode:
+                    default: CreateCustomerProblemReport-4501-V
+                    type: String
+                  faultTrace:
+                    type: string
+                  soaFaultOriginator:
+                    type: string
+                  faultDescription:
+                    type: string
+                  soaTransactionID:
+                    type: string
+  504_error_Response:
+    required:
+    - Fault
+    properties:
+      Fault:
+        type: object
+        required:
+        - faultcode
+        - faultstring
+        - detail
+        properties:
+          faultcode:
+            type: string
+          faultstring:
+            type: string
+          detail:
+            type: object
+            required:
+            - createSR
+            properties:
+              createSR:
+                type: object
+                required:
+                - soaFaultCode
+                - faultTrace
+                - soaFaultOriginator
+                - faultDescription
+                - soaTransactionID
+                properties:
+                  soaFaultCode:
+                    default: CreateCustomerProblemReport-2502-F
+                    type: String
+                  faultTrace:
+                    type: string
+                  soaFaultOriginator:
+                    type: string
+                  faultDescription:
+                    type: string
+                  soaTransactionID:
+                    type: string
+  500_error_Response:
+    required:
+    - Fault
+    properties:
+      Fault:
+        type: object
+        required:
+        - faultcode
+        - faultstring
+        - detail
+        properties:
+          faultcode:
+            type: string
+          faultstring:
+            type: string
+          detail:
+            type: object
+            required:
+            - createSR
+            properties:
+              createSR:
+                type: object
+                required:
+                - soaFaultCode
+                - faultTrace
+                - soaFaultOriginator
+                - faultDescription
+                - soaTransactionID
+                properties:
+                  soaFaultCode:
+                    default: CreateCustomerProblemReport-3612-E
+                    type: String
+                  faultTrace:
+                    type: string
+                  soaFaultOriginator:
+                    type: string
+                  faultDescription:
+                    type: string
+                  soaTransactionID:
+                    type: string
+swagger: '2.0'
+info:
+  description: 'This operation will create a service request in Airtel System '
+  title: " CreateCustomerProblemReport_V2.1"
+  version: '2.1'

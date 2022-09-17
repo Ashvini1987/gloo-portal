@@ -1,0 +1,56 @@
+{{ $currentScope := .}}
+{{ range $path, $_ :=  .Files.Glob  "open-api-specifications/*" }}
+  {{- with $currentScope}}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ ($path | replace "open-api-specifications/" "") | replace ".yaml" "-apidoc" }}
+  namespace: gloo-portal
+binaryData:    
+   api-doc-spec: {{ .Files.Get $path | b64enc }}
+   {{- end }}
+---
+apiVersion: portal.gloo.solo.io/v1beta1
+kind: APIDoc
+metadata:
+  name: {{ ($path | replace "open-api-specifications/" "") | replace ".yaml" "" }}
+  namespace: gloo-portal
+spec:
+  openApi:
+    content:
+       configMap:
+           key: api-doc-spec
+           name: {{ ($path | replace "open-api-specifications/" "") | replace ".yaml" "-apidoc" }}
+           namespace: gloo-portal
+{{ end }}
+
+# {{- range $index,$apidoc := .Values.apiDocs }}
+# ---
+# apiVersion: v1
+# kind: ConfigMap
+# metadata:
+#   name: {{ $apidoc.name }}
+#   namespace: {{ $apidoc.namespace }}
+# binaryData:
+#   api-doc-spec: {{ $.Files.Get (printf "%s" "open-api-specifications/$apidoc.fileName") | b64enc  }}  
+# ---
+# apiVersion: portal.gloo.solo.io/v1beta1
+# kind: APIDoc
+# metadata:
+#   name: {{ $apidoc.name }}
+#   namespace: {{ $apidoc.namespace }}
+# spec:
+#   openApi:
+#     content:
+#        configMap:
+#            key: api-doc-spec
+#            name: {{ $apidoc.name }}
+#            namespace: {{ $apidoc.namespace }}
+# ---               
+# {{- end }}                                                                  
+                     
+
+
+
+

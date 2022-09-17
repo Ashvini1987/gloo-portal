@@ -1,0 +1,33 @@
+{{- range $index,$environments := .Values.environments }}
+---
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: {{ $environments.name }}-cert
+  namespace: gloo-system
+spec:
+      certificate:
+        commonName: "Aplos gateway cert"
+        exiresIn: "720h"
+        renewBefore: "24h"
+        dnsNames:
+        - aplos.internal-gateway.apim.india.airtel.itm
+  commonName: {{ $environments.tls.certificate.commonName }}
+  dnsNames:
+{{- toYaml $environments.tls.dnsNames | nindent 4 }} 
+  duration: {{ $environments.tls.certificate.exiresIn }}
+  issuerRef:
+    kind: ClusterIssuer
+    name: ca-cluster-issuer
+  keyAlgorithm: rsa
+  keyEncoding: pkcs1
+  keySize: 2048
+  organization:
+    - airtel
+  privateKey: {}
+  renewBefore: {{ $environments.tls.certificate.renewBefore }}
+  secretName: {{ $environments.name }}-cert
+  subject: {}
+  usages:
+    - server auth
+{{- end }}     
