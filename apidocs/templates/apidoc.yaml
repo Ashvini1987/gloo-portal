@@ -1,7 +1,7 @@
 {{ $currentScope := .}}
 {{ range $path, $_ :=  .Files.Glob  "open-api-specifications/*" }}
   {{- with $currentScope}}
----
+# ---
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -10,7 +10,7 @@ metadata:
 binaryData:    
    api-doc-spec: {{ .Files.Get $path | b64enc }}
    {{- end }}
----
+# ---
 apiVersion: portal.gloo.solo.io/v1beta1
 kind: APIDoc
 metadata:
