@@ -48,9 +48,4 @@ spec:
 #            name: {{ $apidoc.name }}
 #            namespace: {{ $apidoc.namespace }}
 # ---               
-# {{- end }}                                                                  
-                     
-
-
-
-
+# {{- end }}
