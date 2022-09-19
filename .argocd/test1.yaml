@@ -8,6 +8,6 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: apidocs
-    repoURL: https://github.com/Ashvini1987/gloo-portal.git
+    path: apiproducts
+    repoURL: ssh://github.com/Ashvini1987/gloo-portal.git
     targetRevision: HEAD
