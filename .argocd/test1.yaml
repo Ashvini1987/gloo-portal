@@ -1,0 +1,13 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: mywrapper
+  namespace: argocd
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: apiproducts
+    repoURL: ssh://github.com/Ashvini1987/gloo-portal.git
+    targetRevision: HEAD
