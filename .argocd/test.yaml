@@ -9,5 +9,5 @@ spec:
   project: default
   source:
     path: apidocs
-    repoURL: http://github.com/Ashvini1987/gloo-portal.git
+    repoURL: https://github.com/Ashvini1987/gloo-portal.git
     targetRevision: HEAD
