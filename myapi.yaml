@@ -1,0 +1,28 @@
+---
+openapi: 3.0.2
+info:
+  title: test-doc
+  version: 1.0.0
+paths:
+  /employees:
+    get:
+      operationId: getEmp
+components:
+  schemas:
+    employee:
+      title: Root Type for employee
+      description: ""
+      type: object
+      properties:
+        name:
+          type: string
+        last:
+          minLength: 5
+          type: string
+        age:
+          format: int32
+          type: integer
+      example:
+        name: ashvini
+        last: khatri
+        age: 35
